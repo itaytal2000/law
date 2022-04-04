@@ -1,0 +1,10 @@
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <h3>About</h3>
+    </div>
+</div>
+<div *ngFor="let convert of allConvert">
+    <span class="h5 col-lg-12">
+        {{convert.sum}} {{convert.from}} = {{convert.res}} {{convert.to}}
+    </span>
+</div>

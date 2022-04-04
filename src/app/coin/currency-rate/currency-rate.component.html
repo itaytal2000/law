@@ -1,0 +1,61 @@
+<form [formGroup]="currencyForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h3>Currency Convertor</h3>
+        </div>
+    </div>
+    <div class="row custom-wrapper mt-4 mb-4">
+        <h2 class="mb-3 text-center"></h2>
+        <div class="col-lg-4">
+            <input type="number" id="txtSum" formControlName = "txtSum" />
+        </div>
+        <div class="col-lg-4">
+            <div class="row">
+                <div class="col-lg-2">
+                    <label for="slctFrom">From:</label>
+                </div>
+                <div class="col-lg-10">
+                    <select class="custom-select text-center" formControlName="slctFrom">
+                        <option value="">Choose Currency</option>
+                        <option *ngFor="let pobj of arrCoin" value={{pobj}}>{{ pobj }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="row">
+                <span class="col-lg-2 align-button">
+                    <label for="slctTo">To:</label>
+                </span>
+                <div class="col-lg-10">
+                    <select class="custom-select text-center" formControlName="slctTo">
+                        <option value="">Choose Currency</option>
+                        <option *ngFor="let pobj of arrCoin" value={{pobj}}>{{ pobj }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row custom-wrapper">
+        <div class="col-lg-12">
+            <button type="submit" class="btn btn-success btn-lg btn-block" [disabled]="!currencyForm.valid">Submit</button>
+        </div>
+    </div>
+    <div class="row custom-wrapper text-center">
+        <h1 class="col-lg-12 display-4">
+            {{fromToResultText}}
+        </h1>
+    </div>
+    <div>
+        <div class="text-danger" *ngIf="currencyForm.controls.txtSum.errors?.required && isSubmitted">
+            Sum is required
+        </div>
+        <div class="text-danger" *ngIf="currencyForm.controls.slctFrom?.invalid && isSubmitted">
+            Please provide From
+        </div>
+
+        <div class="text-danger" *ngIf="currencyForm.controls.slctTo?.invalid && isSubmitted">
+            Please provide To
+        </div>
+    </div>
+</form>
